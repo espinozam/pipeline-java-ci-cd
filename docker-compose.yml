@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: pipeline_db
+    environment:
+      POSTGRES_DB: pipedb
+      POSTGRES_USER: pipeuser
+      POSTGRES_PASSWORD: pipepass
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  tomcat:
+    image: tomcat:10.1-jdk21-temurin
+    container_name: pipeline_tomcat
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    volumes:
+      # Montamos el WAR como ROOT.war
+      - ./target/pipeline-java-ci-cd-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war:ro
+
+volumes:
+  db_data:
