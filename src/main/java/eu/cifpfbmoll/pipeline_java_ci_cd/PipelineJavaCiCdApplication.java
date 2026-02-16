@@ -2,12 +2,18 @@ package eu.cifpfbmoll.pipeline_java_ci_cd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class PipelineJavaCiCdApplication {
+public class PipelineJavaCiCdApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PipelineJavaCiCdApplication.class, args);
 	}
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(PipelineJavaCiCdApplication.class);
+	}
 }
