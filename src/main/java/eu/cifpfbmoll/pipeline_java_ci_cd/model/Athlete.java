@@ -3,14 +3,8 @@ package eu.cifpfbmoll.pipeline_java_ci_cd.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "athletes")
 public class Athlete {
 
@@ -31,4 +25,26 @@ public class Athlete {
     @NotBlank
     @Column(nullable = false, unique = true)
     private String email;
+
+    // copnstructores
+    protected Athlete() {}
+
+    public Athlete(final String firstName, final String lastName, final String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    // getters y setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }
