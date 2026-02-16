@@ -31,4 +31,26 @@ public class Activity {
     @NotNull
     @Column(nullable = false)
     private Integer durationMinutes;
+
+    // constructores
+    protected Activity() {}
+
+    public Activity(final String name, final ActivityType type, final Integer durationMinutes) {
+        this.name = name;
+        this.type = type;
+        this.durationMinutes = durationMinutes;
+    }
+
+    // getters y setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public ActivityType getType() { return type; }
+    public void setType(ActivityType type) { this.type = type; }
+
+    public Integer getDurationMinutes() { return durationMinutes; }
+    public void setDurationMinutes(Integer durationMinutes) { this.durationMinutes = durationMinutes; }
 }
