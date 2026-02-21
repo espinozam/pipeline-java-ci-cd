@@ -43,5 +43,8 @@ jobs:
       - name: Ejecutar tests de integracion (aceptacion)
         run: mvn -q -DskipITs=false verify
 
+      - name: Build WAR (sin ITs)
+        run: mvn -q -DskipITs=true package
+      -
       - name: Construir imagen Docker
         run: docker build -t pipeline-java-ci-cd:ci .
