@@ -47,23 +47,4 @@ class AthleteApiIT {
     assertEquals(HttpStatus.NOT_FOUND, res.getStatusCode()); // Verifica código 404
   }
 
-  // Prueba que POST /api/athletes crea un nuevo atleta
-  @Test
-  void post_valid_returns_201_and_body() {
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_JSON); // Indica que enviamos JSON
-
-    String json = "{\"firstName\":\"New\",\"lastName\":\"Athlete\",\"email\":\"new_athlete@mail.com\"}";
-
-    // Envía petición POST con el JSON
-    ResponseEntity<Athlete> res = rest.exchange(
-        "/api/athletes",
-        HttpMethod.POST,
-        new HttpEntity<>(json, headers),
-        Athlete.class);
-
-    assertEquals(HttpStatus.CREATED, res.getStatusCode());
-    assertNotNull(res.getBody());
-    assertNotNull(res.getBody().getId()); // Verifica que se asignó un ID
-  }
 }

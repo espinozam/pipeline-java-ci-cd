@@ -35,16 +35,10 @@ jobs:
           cache: maven
 
       - name: Verificar estilo de codigo (Checkstyle)
-        run: mvn -q -DskipTests checkstyle:check
+        run: mvn -B -q -DskipTests checkstyle:check
 
-      - name: Ejecutar tests unitarios
-        run: mvn -q -DskipITs=true test
+      - name: Build + tests (unit + ITs) + generar WAR
+        run: mvn -B -q clean verify
 
-      - name: Ejecutar tests de integracion (aceptacion)
-        run: mvn -q -DskipITs=false verify
-
-      - name: Build WAR (sin ITs)
-        run: mvn -q -DskipITs=true package
-      -
       - name: Construir imagen Docker
-        run: docker build -t pipeline-java-ci-cd:ci .
+        run: docker build -t pipeline-java-ci-cd:latest .
